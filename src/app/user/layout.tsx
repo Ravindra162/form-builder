@@ -1,4 +1,4 @@
-"use client"; // This directive ensures the component is treated as a client component
+"use client"; 
 
 import React from "react";
 import { Provider } from "react-redux";
