@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Input from './Input';
 import Button from './Button';
 import Heading from './Heading';
-export default function Element({ elem }:{elem:any, id : string, type: string}) {
+export default function Element({ elem }:{ elem:{id : string, type: string}}) {
  
 
   return (

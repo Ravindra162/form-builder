@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { eyeClose, eyeOpen } from "../../../../public/eye";
+import Image from "next/image";
 import { useState } from "react";
 import {sendOtp, verifyOtp} from "@/actions/auth"
 import Timer from "../../../components/Timer"
@@ -56,17 +57,19 @@ export default function Register() {
           />
           <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600">
             {showPass && (
-              <img
+              <Image
                 className="cursor-pointer"
                 onClick={() => setShowPass(!showPass)}
                 src={eyeOpen}
+                alt="eye"
               />
             )}
             {!showPass && (
-              <img
+              <Image
                 className="cursor-pointer"
                 onClick={() => setShowPass(!showPass)}
                 src={eyeClose}
+                alt="eye"
               />
             )}
           </span>

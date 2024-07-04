@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { addForm } from "@/actions/form"
 import FormList from "@/components/FormList"
-export default function page(){
+export default function Page(){
     const [showConf,setShowConf] = useState(false)
     const [formData,setFormData] = useState({name:"",description:""})
     async function submitHandler(e : any){

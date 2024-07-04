@@ -80,7 +80,7 @@ export async function sendMail(email: string){
         subject:"OTP Verification from ChatWave",
         html: `otp is ${otp} `,
     }
-    transporter.sendMail(message,(err,info)=>{
+    transporter.sendMail(message,(err: any,info: any)=>{
         if(err)console.log(err)
         else console.log("Email sent bro")
     })
@@ -90,7 +90,7 @@ export async function sendMail(email: string){
     }
 }
 
-export async function verifyOtp(email,otp){
+export async function verifyOtp(email:string,otp:any){
     const exOTP = await prisma.otp.findFirst({
         where:{
             type:"FORM",

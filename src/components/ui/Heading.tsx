@@ -1,5 +1,5 @@
 export default function Heading({size,elem}:{size: string, elem:any}){
-    const headingLists = {
+    const headingLists: any = {
       1:"text-5xl",
       2:"text-4xl",
       3:"text-3xl",

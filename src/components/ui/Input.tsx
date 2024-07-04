@@ -1,6 +1,6 @@
 
 
-export default function Input({elem}){
+export default function Input({elem}:any){
     return <input
     name={elem.name}
     placeholder={elem.placeholder}

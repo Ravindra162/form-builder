@@ -4,21 +4,30 @@ import { getFormById, submitForm } from "@/actions/form";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Element from "@/components/ui/Element";
-export default function page(){
-    const [items,setItems] = useState([])
+interface item{
+    name:string,
+    id : string,
+    type: string,
+    borderRadius?: string,
+    backGroundColor?:string,
+    placeholder?:string,
+    label?:string
+}
+export default function Page(){
+    const [items,setItems] = useState<item[]>([])
     const [isVerified,setIsVerified] = useState(true)
-    const {id} = useParams()
+    const {id}:{id:string} = useParams()
     useEffect(()=>{
-        getFormById(id).then((res)=>{
+        getFormById(id).then((res:any)=>{
             console.log(res)
             setItems(res.items)
         })
     },[])
 
-    const submitHandler = async(e) => {
+    const submitHandler = async(e: any) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = {};
+        const data: any = {};
         formData.forEach((value, key) => {
             data[key] = value;
         });
@@ -36,7 +45,7 @@ export default function page(){
         className="h-screen w-full bg-black overflow-y-scroll flex flex-col justify-center items-center">
             {
                 items.map((elem,index)=>{
-                    return <Element key={elem.id} elem={elem} />
+                    return <Element key={index} elem={elem} />
                 })
             }
         </form>}

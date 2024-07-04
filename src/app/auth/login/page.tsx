@@ -1,7 +1,9 @@
 "use client"
 import axios from 'axios'
 import { eyeClose,eyeOpen } from "../../../../public/eye";
-import { use, useState } from "react";
+import {  useState } from "react";
+import Image from 'next/image';
+
 
 export default function Login() {
     // gradient bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%
@@ -24,8 +26,8 @@ export default function Login() {
                     setUser((prev)=>{return {...prev,password:e.target.value}})
                 }} className="h-[40px] w-full bg-white rounded-md px-3" name="password" type={showPass?"password":"text"} placeholder="password"/>
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600">
-                   {showPass&& <img className="cursor-pointer" onClick={()=>setShowPass(!showPass)} src={eyeOpen}/>}
-                   {!showPass&& <img className="cursor-pointer" onClick={()=>setShowPass(!showPass)} src={eyeClose}/>}
+                   {showPass&& <Image className="cursor-pointer" onClick={()=>setShowPass(!showPass)} src={eyeOpen} alt='any'/>}
+                   {!showPass&& <Image className="cursor-pointer" onClick={()=>setShowPass(!showPass)} src={eyeClose} alt='any'/>}
                 </span>
                 <span onClick={()=>alert("get otp from mail")} className="text-sm relative left-[50%]">
                    <u> Forgot password</u>?

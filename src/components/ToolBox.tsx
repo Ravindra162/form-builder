@@ -5,25 +5,25 @@ import { useSelector } from 'react-redux';
 import { publishForm } from '@/actions/form';
 import { useParams } from 'next/navigation';
 export const tools = ['input', 'button','H1','H2','H3','H4','H5']
-function Toolbox({elements, setElements}) {
-  const url = useParams()
+function Toolbox({elements, setElements}:any) {
+  const url: any = useParams()
   const tools = ['input', 'button','H1','H2','H3','H4','H5'];
   const [showPreview,setShowPreview] = useState<boolean>(false)
   const {id} = useSelector((state: any)=>state.currentProp)
   const borderRadiusHandler = (e: any) => {
-      const index = elements.findIndex((elem)=>elem.id===id)
+      const index = elements.findIndex((elem:any)=>elem.id===id)
       console.log(elements[index])
       elements[index].borderRadius=e.target.value
       setElements(()=>[...elements])
   }
   const placeholderHandler = (e: any) => {
-      const index = elements.findIndex((elem)=>elem.id===id)
+      const index = elements.findIndex((elem:any)=>elem.id===id)
       console.log(elements[index])
       elements[index].placeholder=e.target.value
       setElements(()=>[...elements])
   }
   const nameHandler = (e: any) => {
-    const index = elements.findIndex((elem)=>elem.id===id)
+    const index = elements.findIndex((elem:any)=>elem.id===id)
       console.log(elements[index])
       elements[index].name=e.target.value
       setElements(()=>[...elements])

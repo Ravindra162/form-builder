@@ -16,15 +16,17 @@ interface item{
     label?:string
 }
 function FormBuilder() {
-  const {id} = useParams()
-  const [elements, setElements] = useState([]);
+  const {id}:any = useParams()
+  const [elements, setElements] = useState<item[]>([]);
   useEffect(()=>{
-    getFormById(id).then((res)=>{
-      if(!res.items);
+    getFormById(id).then((res:any)=>{
+      if(!res.items){
+
+      }
       else
       setElements(res.items)
     })
-  },[])
+  },[id])
   const handleSort = (event : any) => {
     const { active, over } = event;
     if(!over)return
@@ -49,7 +51,7 @@ function arrayMove(array : item[], from: number, to: number) {
     const { active, over } = event;
     console.log(active,over)
     if (over && over.id === 'editor' && tools.includes(active.id)) {
-      setElements([...elements, { id: Date.now(), type: active.id,name:"", borderRadius:"", placeholder:"" }]);
+      setElements([...elements, { id: Date.now().toString(), type: active.id,name:"", borderRadius:"", placeholder:"" }]);
     }
     else if(over && over.id!=="editor" && over.id!=="button" && over.id!=="input" && (active.id==="input" || active.id==="button")){
         console.log("Please drag into free space")
@@ -62,7 +64,7 @@ function arrayMove(array : item[], from: number, to: number) {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="h-full w-full flex justify-center items-center">
-        <Editor elements={elements} setElements={setElements} />
+        <Editor elements={elements} />
         <Toolbox elements={elements} setElements={setElements} />
       </div>
     </DndContext>

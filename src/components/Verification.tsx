@@ -3,7 +3,7 @@
 import { sendMail } from '@/actions/form';
 import React, { useState, useEffect } from 'react';
 
-const Verification = ({setIsVerified}) => {
+const Verification = ({setIsVerified}:{setIsVerified:React.Dispatch<React.SetStateAction<boolean>>}) => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
@@ -19,7 +19,7 @@ const Verification = ({setIsVerified}) => {
     }
   }, [otpSent, timer]);
 
-  const handleEmailSubmit = async (e) => {
+  const handleEmailSubmit = async (e:any) => {
     e.preventDefault();
     sendMail(email);
     setOtpSent(true);
@@ -27,7 +27,7 @@ const Verification = ({setIsVerified}) => {
 
   };
 
-  const handleOtpSubmit = async (e) => {
+  const handleOtpSubmit = async (e:any) => {
     e.preventDefault();
     // Logic to verify OTP
     // const isValid = await verifyOtp(email, otp); // Implement this function

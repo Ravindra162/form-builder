@@ -8,9 +8,9 @@ export async function register(email:string,username:string,password:string){
         where:{
                 email:email
         }
-    }) || false
+    })
     console.log(existingUser)
-    if(existingUser.isVerified) return {msg:"Already registered"}
+    if(existingUser?.isVerified) return {msg:"Already registered"}
     var salt = await bcrypt.genSaltSync(10);
     var hash = await bcrypt.hashSync(password, salt);
 
@@ -38,9 +38,9 @@ export async function sendOtp(username:string,email:string,password:string){
                 email:email
             }]
         }
-    }) || false
+    })
     console.log(existingUser)
-    if(existingUser.isVerified) return {msg:"Already registered"}
+    if(existingUser?.isVerified) return {msg:"Already registered"}
     const existingOtp = await prisma.otp.findFirst({
         where:{
             email:email
@@ -48,7 +48,7 @@ export async function sendOtp(username:string,email:string,password:string){
     })
     console.log(existingOtp?.expiryDate)
     console.log(new Date(Date.now()))
-    console.log(existingOtp?.expiryDate < new Date(Date.now()))
+    console.log(existingOtp!=undefined && existingOtp?.expiryDate < new Date(Date.now()))
     if(existingOtp){
     if(existingOtp?.expiryDate > new Date(Date.now())){
         console.log("Enter existing otp broo")
@@ -67,20 +67,21 @@ export async function sendOtp(username:string,email:string,password:string){
     }
     let otp:string = generateOtp()
 
-    await prisma.otp.create({
-        data:{
-            email:email,
-            otp:otp,
-            expiryDate:new Date(Date.now()+60*2*1000)
-        }
-    })
+        await prisma.otp.create({
+            data:{
+                email:email,
+                otp:otp,
+                expiryDate:new Date(Date.now()+60*2*1000),
+                type:"REGISTER"
+            }
+        })
     let message = {
         from: 'company.com', // listed in rfc822 message header
         to: email, // listed in rfc822 message header,
         subject:"OTP Verification from ChatWave",
         html: `otp is ${otp} `,
     }
-    transporter.sendMail(message,(err,info)=>{
+    transporter.sendMail(message,(err : any,info: any)=>{
         if(err)console.log(err)
         else console.log("Email sent bro")
     })

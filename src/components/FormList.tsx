@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 function FormList() {
   const [forms,setForms] = useState([])
   useEffect(()=>{
-        getUserForms().then((forms)=>{
+        getUserForms().then((forms:any)=>{
             console.log(forms)
             setForms(forms)
         })
@@ -14,7 +14,7 @@ function FormList() {
   return (
     <div className="h-1/2 w-full bg-black border-[1px] border-gray-300 rounded-md overflow-y-scroll">
   <div className="grid grid-cols-2 gap-4 p-4">
-    {forms.length?forms.map((elem,index)=>{
+    {forms.length?forms.map((elem:any,index)=>{
         return <div key={index} className="bg-white p-4 rounded-md shadow-md">
             <div>
             {elem.name}

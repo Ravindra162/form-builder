@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-const Preview = ({ onClose }) => {
-  const { html } = useSelector((state) => state.preview);
+const Preview = ({ onClose }:{ onClose: React.Dispatch<React.SetStateAction<boolean>>}) => {
+  const { html } = useSelector((state:any) => state.preview);
   console.log(html);
 
   useEffect(() => {
@@ -10,9 +10,7 @@ const Preview = ({ onClose }) => {
     const container = document.getElementById('preview-container');
     if (container) {
       const inputs = container.querySelectorAll('input[disabled],button[disabled]');
-      inputs.forEach((input) => {
-        input.disabled = false;
-      });
+     
     }
   }, [html]);
 

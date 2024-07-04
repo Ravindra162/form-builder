@@ -5,12 +5,12 @@ import FormElement from './FormElement';
 import { SetStateAction, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPreview } from '@/features/previewSlicer';
-function Editor({ elements, setElements }:{elements:{id:string,type:string}[], setElements: React.Dispatch<SetStateAction<{id:string,type:string}[]>>}) {
+function Editor({ elements }:{elements:{id:string,type:string}[]}) {
   const dispatch = useDispatch()
   const { setNodeRef } = useDroppable({ id: 'editor' });
-  const previewRef = useRef()
+  const previewRef = useRef(null)
     useEffect(()=>{
-        const html = previewRef.current
+        const html:any = previewRef.current
         dispatch(setPreview({html:html.innerHTML}))
         console.log(previewRef.current)
     },[elements, dispatch])
