@@ -35,7 +35,7 @@ export default function Login() {
                 </label>
                 <button onClick={async(e)=>{
                     e.preventDefault()
-                   axios.post("https://form-builder-beta-nine.vercel.app/api/login",{username:user.username,password:user.password})
+                   axios.post("https://form-builder-trio.vercel.app/api/login",{username:user.username,password:user.password})
                    .then(response=>{
                     console.log(response)
                     if(response.data.msg==="Logged in")window.location.href="/user/home"
